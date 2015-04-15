@@ -1,0 +1,31 @@
+{
+  "name": "mathielen/package-manager",
+  "type": "library",
+  "description": "A plugin manager library that is heavily based on composer/packagist",
+  "keywords": [
+    "plugin",
+    "manager",
+    "composer",
+    "module"
+  ],
+  "homepage": "https://github.com/mathielen/PackageManager",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Markus Thielen",
+      "email": "markus@logicx.de"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "composer/composer": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Mathielen\\PackageManager": "src/"
+    }
+  }
+}
