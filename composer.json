@@ -18,7 +18,7 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "composer/composer": "dev-master"
+    "composer/composer": "@stable"
   },
   "require-dev": {
     "phpunit/phpunit": "*"
