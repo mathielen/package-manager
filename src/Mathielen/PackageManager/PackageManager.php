@@ -1,9 +1,10 @@
 <?php
 namespace Mathielen\PackageManager;
 
+use Composer\Package\CompletePackageInterface;
 use Composer\Package\PackageInterface;
-use Mathielen\PackageManager\Installer\PackageInstaller;
 use Mathielen\PackageManager\Locator\ComposerSuggestPackageLocatorStrategy;
+use Mathielen\PackageManager\Locator\PackageLocatorStrategyInterface;
 use Mathielen\PackageManager\Package\InstalledPackage;
 
 class PackageManager
@@ -19,19 +20,20 @@ class PackageManager
      */
     private $repositoryManager;
 
-    public function __construct($config = null)
+    public function __construct($config = null, PackageLocatorStrategyInterface $packageLocatorStrategyInterface = null)
     {
         if ($config) {
             chdir(dirname($config));
             $config = basename($config);
         }
 
-        $pluginInstaller = new PackageInstaller();
+        //set default
+        if (!$packageLocatorStrategyInterface) {
+            $packageLocatorStrategyInterface = new ComposerSuggestPackageLocatorStrategy($config);
+        }
 
         $this->applicationManager = new ApplicationManager($config);
-        $this->repositoryManager = new RepositoryManager(
-            new ComposerSuggestPackageLocatorStrategy($config, $pluginInstaller)
-        );
+        $this->repositoryManager = new RepositoryManager($config, $packageLocatorStrategyInterface);
     }
 
     /**
@@ -43,7 +45,7 @@ class PackageManager
     }
 
     /**
-     * @return PackageInterface[]
+     * @return CompletePackageInterface[]
      */
     public function getAvailable()
     {

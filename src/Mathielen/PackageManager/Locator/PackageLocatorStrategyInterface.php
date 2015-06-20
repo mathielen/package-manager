@@ -9,6 +9,6 @@ interface PackageLocatorStrategyInterface
     /**
      * @return PackageInterface[]
      */
-    public function getAvailablePlugins();
+    public function getAvailable();
 
 }

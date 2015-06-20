@@ -15,6 +15,8 @@ use Mathielen\PackageManager\Package\InstalledPackage;
 class ApplicationManager
 {
 
+    private $config;
+
     public function __construct($config)
     {
         $this->config = $config;
@@ -23,7 +25,7 @@ class ApplicationManager
     public function install(PackageInterface $package)
     {
         $packageInstaller = new PackageInstaller();
-        $packageInstaller->install($package->getName());
+        $packageInstaller->install($package->getName(), $package->getVersion());
     }
 
     public function uninstall(PackageInterface $package)

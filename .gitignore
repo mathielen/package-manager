@@ -1,0 +1,4 @@
+vendor
+.DS_Store
+tests/metadata/full/vendor
+tests/metadata/installed/vendor

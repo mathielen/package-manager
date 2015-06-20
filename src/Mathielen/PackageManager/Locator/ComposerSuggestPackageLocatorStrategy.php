@@ -5,28 +5,21 @@ use Composer\IO\NullIO;
 use Composer\Package\Package;
 use Composer\Package\PackageInterface;
 use Composer\Factory;
-use Mathielen\PackageManager\Installer\PackageInstaller;
 
 class ComposerSuggestPackageLocatorStrategy implements PackageLocatorStrategyInterface
 {
 
     private $config;
 
-    /**
-     * @var PackageInstaller
-     */
-    private $pluginInstaller;
-
-    public function __construct($config, PackageInstaller $pluginInstaller)
+    public function __construct($config)
     {
         $this->config = $config;
-        $this->pluginInstaller = $pluginInstaller;
     }
 
     /**
      * @return PackageInterface[]
      */
-    public function getAvailablePlugins()
+    public function getAvailable()
     {
         $plugins = array();
 
