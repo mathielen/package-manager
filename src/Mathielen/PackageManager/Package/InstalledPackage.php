@@ -42,6 +42,16 @@ class InstalledPackage implements CompletePackageInterface
         return version_compare($this->getVersion(), $this->getLatestVersion(), '<');
     }
 
+    /**
+     * Returns the version of this package
+     *
+     * @return string version
+     */
+    public function getVersion()
+    {
+        return $this->installedPackage->{__FUNCTION__}();
+    }
+
     public function getLatestVersion()
     {
         return $this->latestPackage->getVersion();
@@ -375,16 +385,6 @@ class InstalledPackage implements CompletePackageInterface
     }
 
     /**
-     * Returns the version of this package
-     *
-     * @return string version
-     */
-    public function getVersion()
-    {
-        return $this->installedPackage->{__FUNCTION__}();
-    }
-
-    /**
      * Returns the pretty (i.e. non-normalized) version string of this package
      *
      * @return string version
@@ -611,4 +611,16 @@ class InstalledPackage implements CompletePackageInterface
         return $this->installedPackage->{__FUNCTION__}();
     }
 
+    /**
+     * Returns the pretty version string plus a git or hg commit hash of this package
+     *
+     * @see getPrettyVersion
+     *
+     * @param bool $truncate If the source reference is a sha1 hash, truncate it
+     * @return string version
+     */
+    public function getFullPrettyVersion($truncate = true)
+    {
+        return $this->installedPackage->{__FUNCTION__}();
+    }
 }
